@@ -21,10 +21,14 @@ add_quote <- function(x) {
 }
 
 
-if_initialized <- function(x) {
+is_initialized <- function(x) {
   if (!isTRUE(x)) {
     stop("You must initialized a color !", call. = FALSE)
   }
 }
-
+not_initialized <- function(x) {
+  if (isTRUE(x)) {
+    stop("You must NOT initialized a color !", call. = FALSE)
+  }
+}
 

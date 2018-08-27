@@ -6,6 +6,7 @@
 #' @importFrom R6 R6Class
 #' @importFrom glue glue single_quote
 #' @importFrom stringi stri_c
+#' @importFrom utils type.convert
 #'
 chroma <- R6::R6Class(
   classname = "chroma",
@@ -47,7 +48,7 @@ chroma <- R6::R6Class(
 
     # API
     mix = function(color2, ratio = 0.5, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       mode <- match.arg(mode)
       if (!(0 <= ratio & ratio <= 1))
         stop("'ratio' must be between 0 and 1 (inclusive)", call. = FALSE)
@@ -62,45 +63,54 @@ chroma <- R6::R6Class(
       )
     },
     blend = function(color2, type = c("multiply", "darken", "lighten", "screen", "overlay", "burn", "dodge")) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       type <- match.arg(type)
       private$chroma$blend <- glue::glue("blend('{color2}', '{type}')")
     },
     random = function() {
       private$chroma$random <- "random()"
     },
+    contrast = function(color1, color2) {
+      not_initialized(private$initialized)
+      private$chroma$contrast <- glue::glue("contrast('{color1}', '{color2}')")
+    },
+    distance = function(color1, color2, mode = c("lab", "rgb", "hsl", "lrgb", "lch")) {
+      not_initialized(private$initialized)
+      mode <- match.arg(mode)
+      private$chroma$distance <- glue::glue("distance('{color1}', '{color2}', '{mode}')")
+    },
 
     # color
     alpha = function(value = NA) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$alpha <- glue::glue("alpha({value})", .na = "")
     },
     brighten = function(value = 1) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$brighten <- glue::glue("brighten({value})")
     },
     darken = function(value = 1) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$darken <- glue::glue("darken({value})")
     },
     saturate = function(value = 1) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$saturate <- glue::glue("saturate({value})")
     },
     desaturate = function(value = 1) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$desaturate <- glue::glue("desaturate({value})")
     },
     set = function(channel, value) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$set <- glue::glue("set('{channel}', {value})")
     },
     get = function(channel) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$get <- glue::glue("get('{channel}')")
     },
     luminance = function(lum = NULL, mode = "rgb") {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       if (is.null(lum)) {
         private$chroma$luminance <- "luminance()"
       } else {
@@ -108,23 +118,23 @@ chroma <- R6::R6Class(
       }
     },
     hex = function() {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$hex <- "hex()"
     },
     name = function() {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$name <- "name()"
     },
     css = function() {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$css <- "css()"
     },
     rgb = function(round = TRUE) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$rgb <- glue::glue("rgb({tolower(round)})")
     },
     rgba = function(round = TRUE) {
-      if_initialized(private$initialized)
+      is_initialized(private$initialized)
       private$chroma$rgba <- glue::glue("rgba({tolower(round)})")
     },
     print = function() {
@@ -147,6 +157,7 @@ chroma <- R6::R6Class(
       for (i in seq_along(code)) {
         res[i] <- chromajs$eval(code[i])
       }
+      res <- type.convert(x = res, as.is = TRUE)
       return(res)
     }
   ),

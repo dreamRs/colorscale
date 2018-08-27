@@ -60,4 +60,27 @@ chroma_random <- function(n = 1L) {
 }
 
 
+#' Distance between two colors
+#'
+#' Computes the Euclidean distance between two colors in a given color space (default is Lab).
+#'
+#' @param color1 Hexadecimal string or a name for color one.
+#' @param color2 Hexadecimal string or a name for color two.
+#' @param mode Color space used for interpolation.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' chroma_distance("#fff", "#ff0")
+#' chroma_distance("#fff", "#ff0", "rgb")
+chroma_distance <- function(color1, color2, mode = c("lab", "rgb", "hsl", "lrgb", "lch")) {
+  ch <- chroma$new()
+  ch$distance(color1 = color1, color2 = color2, mode = mode)
+  ch$eval()
+}
+
+
+
+
 

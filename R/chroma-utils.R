@@ -68,7 +68,7 @@ chroma_random <- function(n = 1L) {
 #' @param color2 Hexadecimal string or a name for color two.
 #' @param mode Color space used for interpolation.
 #'
-#' @return
+#' @return a numeric
 #' @export
 #'
 #' @examples

@@ -63,3 +63,22 @@ chroma_distance("#fff", "#ff0")
 chroma_distance("#fff", "#ff0", "rgb")
 #> [1] 255
 ```
+
+Convert color to specific color space:
+
+````r
+ch <- chroma$new("orange")
+ch$hex()
+#> [1] "#ffa500"
+ch$rgb()
+#> [1] 255 165   0
+ch$hsl()
+#> [1] 38.82353  1.00000  0.50000
+ch$lab()
+#> [1] 74.93565 23.93317 78.94978
+ch$gl()
+#> [1] 1.0000000 0.6470588 0.0000000 1.0000000
+ch$css()
+#> [1] "rgb(255,165,0)"
+```
+

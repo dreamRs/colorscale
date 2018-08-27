@@ -2,7 +2,7 @@
 % Please edit documentation in R/chroma-utils.R
 \name{chroma_mix}
 \alias{chroma_mix}
-\title{Mix two colors}
+\title{Mixes two colors}
 \usage{
 chroma_mix(color1, color2, ratio = 0.5, mode = c("rgb", "hsl", "lab",
   "lrgb", "lch"))
@@ -20,7 +20,7 @@ chroma_mix(color1, color2, ratio = 0.5, mode = c("rgb", "hsl", "lab",
 A hexadecimal string
 }
 \description{
-Mix two colors
+Mixes two colors
 }
 \examples{
 chroma_mix("red", "blue")

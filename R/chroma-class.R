@@ -5,7 +5,7 @@
 #' @importFrom V8 v8
 #' @importFrom R6 R6Class
 #' @importFrom glue glue single_quote
-#' @importFrom stringi stri_c
+#' @importFrom stringi stri_c stri_split_fixed
 #' @importFrom utils type.convert
 #'
 chroma <- R6::R6Class(
@@ -117,26 +117,95 @@ chroma <- R6::R6Class(
         private$chroma$luminance <- glue::glue("luminance({lum}, {mode})", lum = lum, mode = glue::single_quote(mode))
       }
     },
+
+
+    # Convert methods
     hex = function() {
       is_initialized(private$initialized)
-      private$chroma$hex <- "hex()"
+      private$chroma$output <- "hex()"
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
     },
     name = function() {
       is_initialized(private$initialized)
-      private$chroma$name <- "name()"
+      private$chroma$output <- "name()"
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
     },
     css = function() {
       is_initialized(private$initialized)
-      private$chroma$css <- "css()"
+      private$chroma$output <- "css()"
+      res <- self$eval(split_char = FALSE)
+      private$chroma$output <- NULL
+      return(res)
     },
     rgb = function(round = TRUE) {
       is_initialized(private$initialized)
-      private$chroma$rgb <- glue::glue("rgb({tolower(round)})")
+      private$chroma$output <- glue::glue("rgb({tolower(round)})")
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
     },
     rgba = function(round = TRUE) {
       is_initialized(private$initialized)
-      private$chroma$rgba <- glue::glue("rgba({tolower(round)})")
+      private$chroma$output <- glue::glue("rgba({tolower(round)})")
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
     },
+    hsl = function() {
+      is_initialized(private$initialized)
+      private$chroma$output <- "hsl()"
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
+    },
+    hsv = function() {
+      is_initialized(private$initialized)
+      private$chroma$output <- "hsv()"
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
+    },
+    hsi = function() {
+      is_initialized(private$initialized)
+      private$chroma$output <- "hsi()"
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
+    },
+    lab = function() {
+      is_initialized(private$initialized)
+      private$chroma$output <- "lab()"
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
+    },
+    lch = function() {
+      is_initialized(private$initialized)
+      private$chroma$output <- "lch()"
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
+    },
+    hcl = function() {
+      is_initialized(private$initialized)
+      private$chroma$output <- "hcl()"
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
+    },
+    gl = function() {
+      is_initialized(private$initialized)
+      private$chroma$output <- "gl()"
+      res <- self$eval()
+      private$chroma$output <- NULL
+      return(res)
+    },
+
+    # R methods
     print = function() {
       code <- private$chroma
       code$sep <- "."
@@ -144,7 +213,7 @@ chroma <- R6::R6Class(
       code <- paste0(code, ";")
       return(code)
     },
-    eval = function() {
+    eval = function(type_convert = TRUE, split_char = ",") {
       chromajs <- V8::v8()
       chromajs$source(file = system.file("chroma/chroma.min.js", package = "colorscale"))
       code <- private$chroma
@@ -157,7 +226,12 @@ chroma <- R6::R6Class(
       for (i in seq_along(code)) {
         res[i] <- chromajs$eval(code[i])
       }
-      res <- type.convert(x = res, as.is = TRUE)
+      if (!is.null(split_char)) {
+        res <- stri_split_fixed(str = res, pattern = split_char)[[1]]
+      }
+      if (type_convert) {
+        res <- type.convert(x = res, as.is = TRUE)
+      }
       return(res)
     }
   ),

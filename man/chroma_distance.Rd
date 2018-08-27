@@ -14,6 +14,9 @@ chroma_distance(color1, color2, mode = c("lab", "rgb", "hsl", "lrgb",
 
 \item{mode}{Color space used for interpolation.}
 }
+\value{
+a numeric
+}
 \description{
 Computes the Euclidean distance between two colors in a given color space (default is Lab).
 }

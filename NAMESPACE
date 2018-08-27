@@ -3,6 +3,7 @@
 export(chroma)
 export(chroma_avg)
 export(chroma_mix)
+export(chroma_random)
 importFrom(R6,R6Class)
 importFrom(V8,v8)
 importFrom(glue,glue)

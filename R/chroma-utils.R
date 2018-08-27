@@ -40,3 +40,24 @@ chroma_avg <- function(colors, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
   ch$average(colors = colors, mode = mode)
   ch$eval()
 }
+
+
+#' Random colors
+#'
+#' Creates a random color by generating a random hexadecimal string.
+#'
+#' @param n Number of colors desired.
+#'
+#' @return A vector of hexadecimal string(s).
+#' @export
+#'
+#' @examples
+#' chroma_random()
+#' chroma_random(10)
+chroma_random <- function(n = 1L) {
+  ch <- chroma$new()
+  replicate(n = n, expr = {ch$random();ch$eval()})
+}
+
+
+

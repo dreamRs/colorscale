@@ -18,5 +18,5 @@ A hexadecimal string
 Simple averaging of colors
 }
 \examples{
-
+chroma_avg(colors = c("#ddd", "yellow", "red", "teal"))
 }

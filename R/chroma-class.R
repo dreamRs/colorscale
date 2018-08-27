@@ -55,11 +55,19 @@ chroma <- R6::R6Class(
     },
     average = function(colors, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
       mode <- match.arg(mode)
-      private$chroma$mix <- glue::glue(
+      private$chroma$average <- glue::glue(
         "average([{colors}], '{mode}')",
         colors = stri_c(glue::single_quote(colors), collapse = ", "),
         mode = mode
       )
+    },
+    blend = function(color2, type = c("multiply", "darken", "lighten", "screen", "overlay", "burn", "dodge")) {
+      if_initialized(private$initialized)
+      type <- match.arg(type)
+      private$chroma$blend <- glue::glue("blend('{color2}', '{type}')")
+    },
+    random = function() {
+      private$chroma$random <- "random()"
     },
 
     # color

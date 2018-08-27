@@ -46,6 +46,13 @@ chroma <- R6::R6Class(
     },
 
     # API
+    mix = function(color2, ratio = 0.5, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
+      if_initialized(private$initialized)
+      mode <- match.arg(mode)
+      if (!(0 <= ratio & ratio <= 1))
+        stop("'ratio' must be between 0 and 1 (inclusive)", call. = FALSE)
+      private$chroma$mix <- glue::glue("mix('{color2}', {ratio}, '{mode}')")
+    },
 
 
     # color

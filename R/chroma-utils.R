@@ -1,6 +1,6 @@
 
 
-#' Mix two colors
+#' Mixes two colors
 #'
 #' @param color1 Hexadecimal string or a name for color one.
 #' @param color2 Hexadecimal string or a name for color two.

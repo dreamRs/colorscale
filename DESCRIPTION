@@ -1,0 +1,11 @@
+Package: colorscale
+Title: Create a Color Scale From a Single Color
+Version: 0.0.0.9000
+Authors@R: c(
+  person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
+  person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
+  person("Gregor", "Aisch", role = c("cph"), comment = "chroma.js library"))
+Description: R6 api for 'chroma.js'.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true

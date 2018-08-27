@@ -9,3 +9,9 @@ Description: R6 api for 'chroma.js'.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    glue,
+    R6,
+    V8,
+    stringi
+RoxygenNote: 6.1.0

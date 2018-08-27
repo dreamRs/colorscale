@@ -19,3 +19,12 @@ add_quote <- function(x) {
     unlist(lapply(x, add_quote))
   }
 }
+
+
+if_initialized <- function(x) {
+  if (!isTRUE(x)) {
+    stop("You must initialized a color !", call. = FALSE)
+  }
+}
+
+

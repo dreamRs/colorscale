@@ -22,3 +22,21 @@ chroma_mix <- function(color1, color2, ratio = 0.5, mode = c("rgb", "hsl", "lab"
   ch$eval()
 }
 
+
+#' Simple averaging of colors
+#'
+#' @param colors A vector of hexadecimal strings, minimum length 2.
+#' @param mode Color space used for interpolation.
+#'
+#' @return A hexadecimal string
+#' @export
+#'
+#' @examples
+#' chroma_avg(colors = c("#ddd", "yellow", "red", "teal"))
+chroma_avg <- function(colors, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
+  if (length(colors) <= 2)
+    stop("'colors' must bve minimum length 2.", call. = FALSE)
+  ch <- chroma$new()
+  ch$average(colors = colors, mode = mode)
+  ch$eval()
+}

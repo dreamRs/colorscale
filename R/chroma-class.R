@@ -53,7 +53,14 @@ chroma <- R6::R6Class(
         stop("'ratio' must be between 0 and 1 (inclusive)", call. = FALSE)
       private$chroma$mix <- glue::glue("mix('{color2}', {ratio}, '{mode}')")
     },
-
+    average = function(colors, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
+      mode <- match.arg(mode)
+      private$chroma$mix <- glue::glue(
+        "average([{colors}], '{mode}')",
+        colors = stri_c(glue::single_quote(colors), collapse = ", "),
+        mode = mode
+      )
+    },
 
     # color
     alpha = function(value = NA) {

@@ -4,16 +4,19 @@
 \alias{get_light_cols}
 \title{Get n lightest colors from a single one}
 \usage{
-get_light_cols(color, n = 6, rotate = 67, saturation = 20)
+get_light_cols(color, n = 6, lightness = 0.8, rotate = 67,
+  saturation = 0.2)
 }
 \arguments{
 \item{color}{Hexadecimal string or a name for color.}
 
 \item{n}{Number of desired colors.}
 
+\item{lightness}{Percentage of lightness.}
+
 \item{rotate}{Rotate coefficient in HSL space.}
 
-\item{saturation}{Saturation coefficient in HSL space}
+\item{saturation}{Saturation percentage in HSL space}
 }
 \value{
 a vector of \code{n} colors

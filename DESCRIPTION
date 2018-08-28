@@ -14,5 +14,8 @@ Imports:
     R6,
     V8,
     stringi,
-    htmltools
+    htmltools,
+    shiny,
+    miniUI,
+    shinyWidgets
 RoxygenNote: 6.1.0

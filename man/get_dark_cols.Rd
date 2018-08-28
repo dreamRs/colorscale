@@ -4,16 +4,19 @@
 \alias{get_dark_cols}
 \title{Get n darkest colors from a single one}
 \usage{
-get_dark_cols(color, n = 4, rotate = -51, saturation = 14)
+get_dark_cols(color, n = 4, darkness = 0.5, rotate = -51,
+  saturation = 0.14)
 }
 \arguments{
 \item{color}{Hexadecimal string or a name for color.}
 
 \item{n}{Number of desired colors.}
 
+\item{darkness}{Percentage of darkness.}
+
 \item{rotate}{Rotate coefficient in HSL space.}
 
-\item{saturation}{Saturation coefficient in HSL space}
+\item{saturation}{Saturation percentage in HSL space}
 }
 \value{
 a vector of \code{n} colors

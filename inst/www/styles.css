@@ -1,0 +1,58 @@
+
+.dreamrs-title-box {
+  background-color: rgb(16, 34, 70);
+  height: 45px;
+}
+
+.dreamrs-title {
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+.form-group {
+  margin-bottom: 0 !important;
+}
+
+
+
+
+/* shiny alerts */
+
+.shiny-notification-error {
+  color: #fff !important;
+  background-color: #d9534f !important;
+  border: 1px solid #d9534f !important;
+}
+
+.shiny-notification-warning {
+  color: #fff !important;
+  background-color: #f39c12 !important;
+  border: 1px solid #f39c12 !important;
+}
+
+.shiny-notification-message {
+  color: #fff !important;
+  background-color: #5cb85c !important;
+  border: 1px solid #5cb85c !important;
+}
+
+.shiny-notification {
+  font-size: 120% !important;
+  font-weight: bold !important;
+}
+
+#shiny-notification-panel {
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.shiny-notification-close {
+  font-size: 26px;
+  color: #fff;
+  cursor: pointer;
+}
+
+

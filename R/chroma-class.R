@@ -205,6 +205,30 @@ chroma <- R6::R6Class(
       return(res)
     },
 
+    # Scales
+    scale = function(colors) {
+      not_initialized(private$initialized)
+      private$chroma$scale <- glue::glue(
+        "scale([{colors}])",
+        colors = stri_c(glue::single_quote(colors), collapse = ", ")
+      )
+    },
+    mode = function(mode = c("rgb", "lab", "lrgb", "hsl", "lch")) {
+      mode <- match.arg(mode)
+      private$chroma$mode <- glue::glue("mode('{mode}')")
+    },
+    correctLightness = function() {
+      private$chroma$correctLightness <- "correctLightness()"
+    },
+    colors = function(n) {
+      if (length(n) == 1) {
+        private$chroma$colors <- glue::glue("colors({n})")
+      } else {
+        private$chroma$colors <- glue::glue("([{n}])", n = stri_c(n, collapse = ", "))
+      }
+    },
+
+
     # R methods
     print = function() {
       code <- private$chroma

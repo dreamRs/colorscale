@@ -82,5 +82,33 @@ chroma_distance <- function(color1, color2, mode = c("lab", "rgb", "hsl", "lrgb"
 
 
 
+#' Returns a single channel value.
+#'
+#' @param color Hexadecimal string or a name for color.
+#' @param channel Channel desired, for example \code{"hsl.h"} for hue parameter in hsl color space.
+#'
+#' @return a single numeric value
+#' @export
+#'
+#' @examples
+#' chroma_get("#1D9A6C", "hsl.h")
+#' chroma_get("hotpink", "hsl.h")
+#'
+#' # vectorized over color
+#' chroma_get(c("hotpink", "steelblue"), "rgb.g")
+chroma_get <- function(color, channel) {
+  if (length(color) == 1) {
+    value <- chroma$new(color)
+    value$get(channel = channel)
+    value$eval()
+  } else {
+    res <- lapply(
+      X = color,
+      FUN = chroma_get,
+      channel = channel
+    )
+    unlist(res)
+  }
+}
 
 

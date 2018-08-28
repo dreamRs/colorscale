@@ -13,5 +13,6 @@ Imports:
     glue,
     R6,
     V8,
-    stringi
+    stringi,
+    htmltools
 RoxygenNote: 6.1.0

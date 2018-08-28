@@ -50,7 +50,7 @@ chroma <- R6::R6Class(
     mix = function(color2, ratio = 0.5, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
       is_initialized(private$initialized)
       mode <- match.arg(mode)
-      if (!(0 <= ratio & ratio <= 1))
+      if (!all(0 <= ratio & ratio <= 1))
         stop("'ratio' must be between 0 and 1 (inclusive)", call. = FALSE)
       private$chroma$mix <- glue::glue("mix('{color2}', {ratio}, '{mode}')")
     },
@@ -103,7 +103,7 @@ chroma <- R6::R6Class(
     },
     set = function(channel, value) {
       is_initialized(private$initialized)
-      private$chroma$set <- glue::glue("set('{channel}', {value})")
+      private$chroma[[stri_c("set", channel, sep = ".")]] <- glue::glue("set('{channel}', {value})")
     },
     get = function(channel) {
       is_initialized(private$initialized)
@@ -251,7 +251,7 @@ chroma <- R6::R6Class(
         res[i] <- chromajs$eval(code[i])
       }
       if (!is.null(split_char)) {
-        res <- stri_split_fixed(str = res, pattern = split_char)[[1]]
+        res <- unlist(stri_split_fixed(str = res, pattern = split_char))
       }
       if (type_convert) {
         res <- type.convert(x = res, as.is = TRUE)

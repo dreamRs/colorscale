@@ -1,0 +1,4 @@
+Name: Color Scale
+Description: Create a color scale from a single color
+Binding: color_scale
+Interactive: true

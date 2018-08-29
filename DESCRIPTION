@@ -17,7 +17,8 @@ Imports:
     htmltools,
     shiny,
     miniUI,
-    shinyWidgets
+    shinyWidgets,
+    rstudioapi
 RoxygenNote: 6.1.0
 Suggests: 
     grDevices

@@ -11,7 +11,11 @@
 #' @importFrom htmltools tags
 #' @importFrom shiny uiOutput renderUI runGadget paneViewer actionButton
 #'  sliderInput splitLayout icon dialogViewer stopApp observeEvent reactiveValues
-#' @importFrom shinyWidgets spectrumInput chooseSliderSkin
+#'  showModal modalDialog actionLink req
+#' @importFrom shinyWidgets spectrumInput chooseSliderSkin prettyRadioButtons
+#' @importFrom glue double_quote glue
+#' @importFrom stringi stri_c
+#' @importFrom rstudioapi getSourceEditorContext insertText
 #'
 #' @examples
 #' \dontrun{
@@ -37,7 +41,14 @@ color_scale <- function(color = "#1D9A6C") {
       tags$h1(icon("paint-brush"), "Color Scale from one color", class = "dreamrs-title"),
       actionButton(
         inputId = "close", label = "Close",
-        class = "btn-sm pull-left"
+        class = "btn-sm pull-left",
+        icon = icon("times")
+      ),
+      actionButton(
+        inputId = "launch_modal_code",
+        label = "Code",
+        class = "btn-sm pull-right",
+        icon = icon("code")
       )
     ),
     # body
@@ -143,7 +154,7 @@ color_scale <- function(color = "#1D9A6C") {
 
   server <- function(input, output, session) {
 
-    result_scale <- reactiveValues(colors = NULL)
+    result_scale <- reactiveValues(colors = NULL, code = "")
 
     output$rect_cols <- renderUI({
       color <- input$main_col
@@ -160,6 +171,64 @@ color_scale <- function(color = "#1D9A6C") {
       )
       result_scale$colors <- res_colors
       colors_rect(colors = res_colors)
+    })
+
+    observeEvent(input$launch_modal_code, {
+      showModal(modalDialog(
+        title = "Code",
+        prettyRadioButtons(
+          inputId = "raw_or_fun",
+          label = NULL,
+          choices = c("Raw vector", "Function call"),
+          shape = "round", fill = TRUE, inline = TRUE
+        ),
+        uiOutput(outputId = "render_code"),
+        actionLink(
+          inputId = "insert_script",
+          label = "Insert in current script",
+          icon = icon("arrow-left ")
+        )
+      ))
+    })
+
+    output$render_code <- renderUI({
+      req(input$raw_or_fun)
+      if (input$raw_or_fun == "Raw vector") {
+        code <- glue::glue(
+          "c({colors})\n",
+          colors = stri_c(glue::double_quote(result_scale$colors), collapse = ", ")
+        )
+      } else {
+        code <- glue::glue(
+          "single_scale(
+          color = {color},
+          n_dark = {n_dark},
+          darkness = {darkness},
+          rotate_dark = {rotate_dark},
+          saturation_dark = {saturation_dark},
+          n_light = {n_light},
+          lightness = {lightness},
+          rotate_light = {rotate_light},
+          saturation_light = {saturation_light}
+        )\n",
+          color = glue::double_quote(color),
+          n_dark = input$n_dark,
+          darkness = input$p_dark / 100,
+          rotate_dark = input$a_dark,
+          saturation_dark = input$s_dark / 100,
+          n_light = input$n_light,
+          lightness = input$p_light / 100,
+          rotate_light = input$a_light,
+          saturation_light = input$s_light / 100
+        )
+      }
+      result_scale$code <- code
+      tags$code(tags$pre(code))
+    })
+
+    observeEvent(input$insert_script, {
+      context <- rstudioapi::getSourceEditorContext()
+      rstudioapi::insertText(text = result_scale$code, id = context$id)
     })
 
     observeEvent(input$close, stopApp())

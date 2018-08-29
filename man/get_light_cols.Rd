@@ -12,18 +12,21 @@ get_light_cols(color, n = 6, lightness = 0.8, rotate = 67,
 
 \item{n}{Number of desired colors.}
 
-\item{lightness}{Percentage of lightness.}
+\item{lightness}{Percentage of lightness (\code{[0, 1]}).}
 
-\item{rotate}{Rotate coefficient in HSL space.}
+\item{rotate}{Rotate coefficient in HSL space (\code{[-360, 360]}).}
 
-\item{saturation}{Saturation percentage in HSL space}
+\item{saturation}{Saturation percentage in HSL space (\code{[-1, 1]}).}
 }
 \value{
-a vector of \code{n} colors
+a vector of \code{n} colors.
 }
 \description{
 Get n lightest colors from a single one
 }
 \examples{
 get_light_cols("#1D9A6C")
+
+# display in viewer
+view_cols(get_light_cols(color = "#1D9A6C"))
 }

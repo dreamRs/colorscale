@@ -10,7 +10,7 @@
 #' @importFrom miniUI miniPage miniContentPanel
 #' @importFrom htmltools tags
 #' @importFrom shiny uiOutput renderUI runGadget paneViewer actionButton
-#'  sliderInput splitLayout icon dialogViewer stopApp observeEvent
+#'  sliderInput splitLayout icon dialogViewer stopApp observeEvent reactiveValues
 #' @importFrom shinyWidgets spectrumInput chooseSliderSkin
 #'
 #' @examples
@@ -143,25 +143,23 @@ color_scale <- function(color = "#1D9A6C") {
 
   server <- function(input, output, session) {
 
+    result_scale <- reactiveValues(colors = NULL)
+
     output$rect_cols <- renderUI({
-      col <- input$main_col
-      colors_rect(colors = c(
-        get_dark_cols(
-          color = col,
-          n = input$n_dark,
-          darkness = input$p_dark / 100,
-          rotate = input$a_dark,
-          saturation = input$s_dark / 100
-        ),
-        col,
-        get_light_cols(
-          color = col,
-          n = input$n_light,
-          lightness = input$p_light / 100,
-          rotate = input$a_light,
-          saturation = input$s_light / 100
-        )
-      ))
+      color <- input$main_col
+      res_colors <- single_scale(
+        color = color,
+        n_dark = input$n_dark,
+        darkness = input$p_dark / 100,
+        rotate_dark = input$a_dark,
+        saturation_dark = input$s_dark / 100,
+        n_light = input$n_light,
+        lightness = input$p_light / 100,
+        rotate_light = input$a_light,
+        saturation_light = input$s_light / 100
+      )
+      result_scale$colors <- res_colors
+      colors_rect(colors = res_colors)
     })
 
     observeEvent(input$close, stopApp())

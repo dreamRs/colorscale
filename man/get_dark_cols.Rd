@@ -12,18 +12,21 @@ get_dark_cols(color, n = 4, darkness = 0.5, rotate = -51,
 
 \item{n}{Number of desired colors.}
 
-\item{darkness}{Percentage of darkness.}
+\item{darkness}{Percentage of darkness (\code{[0, 1]}).}
 
-\item{rotate}{Rotate coefficient in HSL space.}
+\item{rotate}{Rotate coefficient in HSL space (\code{[-360, 360]}).}
 
-\item{saturation}{Saturation percentage in HSL space}
+\item{saturation}{Saturation percentage in HSL space (\code{[-1, 1]}).}
 }
 \value{
-a vector of \code{n} colors
+a vector of \code{n} colors.
 }
 \description{
 Get n darkest colors from a single one
 }
 \examples{
 get_dark_cols("#1D9A6C")
+
+# display in viewer
+view_cols(get_dark_cols(color = "#1D9A6C"))
 }

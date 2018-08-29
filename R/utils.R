@@ -21,6 +21,9 @@ eval_chroma <- function(code = NULL, type_convert = TRUE, split_char = ",") {
 
 #' @importFrom stringi stri_c
 wrap_code <- function(code) {
+  if ("colors" %in% names(code)) {
+    code <- code[c(setdiff(names(code), "colors"), "colors")]
+  }
   code$sep <- "."
   code <- do.call(stri_c, code)
   code <- paste0(code, ";")

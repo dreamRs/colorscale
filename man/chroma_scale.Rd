@@ -11,4 +11,58 @@ chroma_scale
 \description{
 Create a color scale with chroma.js
 }
+\examples{
+# Palette from white to black
+cs <- chroma_scale$new()
+cs$scale()
+cs$colors(10)
+(res <- cs$eval())
+view_cols(res)
+
+
+# Specify from & to colors
+cs <- chroma_scale$new()
+cs$scale(colors = c("yellow", "#008ae5"))
+cs$colors(10)
+(res <- cs$eval())
+view_cols(res)
+
+
+# With three colors
+cs <- chroma_scale$new()
+cs$scale(colors = c("yellow", "red", "black"))
+cs$colors(20)
+(res <- cs$eval())
+view_cols(res)
+
+
+# Default color space for interpolation is RGB
+cs <- chroma_scale$new()
+cs$scale(colors = c("yellow", "navy"))
+cs$colors(20)
+(res <- cs$eval())
+view_cols(res)
+
+# Change with mode
+cs$mode("lab")
+(res <- cs$eval())
+view_cols(res)
+
+
+
+# Correct lightness example
+cs <- chroma_scale$new()
+cs$scale(c("black","red","yellow","white"))
+cs$colors(n = 16)
+
+# without
+(res <- cs$eval())
+view_cols(res)
+
+# with correction
+cs$correctLightness()
+(res <- cs$eval())
+view_cols(res)
+
+}
 \keyword{datasets}

@@ -112,3 +112,44 @@ chroma_get <- function(color, channel) {
 }
 
 
+#' Contrast between two colors
+#'
+#' Computes the WCAG contrast ratio between two colors.
+#'  A minimum contrast of 4.5:1 is recommended to ensure
+#'  that text is still readable against a background color.
+#'
+#' @param color1 Hexadecimal string or a name for color.
+#' @param color2 Hexadecimal string or a name for color.
+#'
+#' @return a numeric value
+#' @export
+#'
+#' @examples
+#' chroma_contrast("pink", "hotpink")
+#'
+#'
+#' # black on light grey => good
+#' chroma_contrast("#e3e3e3", "black")
+#'
+#' # black on dark grey => bad
+#' chroma_contrast("#393939", "black")
+chroma_contrast <- function(color1, color2) {
+  stopifnot(length(color1) == length(color2))
+  if (length(color1) == 1) {
+    value <- chroma$new()
+    value$contrast(color1 = color1, color2 = color2)
+    value$eval()
+  } else {
+    res <- lapply(
+      X = seq_along(color1),
+      FUN = function(i) {
+        chroma_contrast(color1 = color1[i], color2 = color2[i])
+      }
+    )
+    unlist(res)
+  }
+}
+
+
+
+

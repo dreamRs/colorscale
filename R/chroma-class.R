@@ -2,11 +2,9 @@
 #'
 #' @export
 #'
-#' @importFrom V8 v8
 #' @importFrom R6 R6Class
 #' @importFrom glue glue single_quote
-#' @importFrom stringi stri_c stri_split_fixed
-#' @importFrom utils type.convert
+#' @importFrom stringi stri_c
 #'
 chroma <- R6::R6Class(
   classname = "chroma",
@@ -205,57 +203,17 @@ chroma <- R6::R6Class(
       return(res)
     },
 
-    # Scales
-    scale = function(colors) {
-      not_initialized(private$initialized)
-      private$chroma$scale <- glue::glue(
-        "scale([{colors}])",
-        colors = stri_c(glue::single_quote(colors), collapse = ", ")
-      )
-    },
-    mode = function(mode = c("rgb", "lab", "lrgb", "hsl", "lch")) {
-      mode <- match.arg(mode)
-      private$chroma$mode <- glue::glue("mode('{mode}')")
-    },
-    correctLightness = function() {
-      private$chroma$correctLightness <- "correctLightness()"
-    },
-    colors = function(n) {
-      if (length(n) == 1) {
-        private$chroma$colors <- glue::glue("colors({n})")
-      } else {
-        private$chroma$colors <- glue::glue("([{n}])", n = stri_c(n, collapse = ", "))
-      }
-    },
 
 
     # R methods
     print = function() {
       code <- private$chroma
-      code$sep <- "."
-      code <- do.call(stri_c, code)
-      code <- paste0(code, ";")
+      code <- wrap_code(code)
       return(code)
     },
     eval = function(type_convert = TRUE, split_char = ",") {
-      chromajs <- V8::v8()
-      chromajs$source(file = system.file("chroma/chroma.min.js", package = "colorscale"))
       code <- private$chroma
-      code$sep <- "."
-      code <- do.call(stri_c, code)
-      code <- paste0(code, ";")
-      # print(code)
-      # chromajs$eval(code)
-      res <- vector(mode = "character", length = length(code))
-      for (i in seq_along(code)) {
-        res[i] <- chromajs$eval(code[i])
-      }
-      if (!is.null(split_char)) {
-        res <- unlist(stri_split_fixed(str = res, pattern = split_char))
-      }
-      if (type_convert) {
-        res <- type.convert(x = res, as.is = TRUE)
-      }
+      res <- eval_chroma(code = code, type_convert = type_convert, split_char = split_char)
       return(res)
     }
   ),
@@ -264,4 +222,100 @@ chroma <- R6::R6Class(
     chroma = NULL
   )
 )
+
+
+
+
+
+
+#' @title Chroma Scale API
+#'
+#' @description Create a color scale with chroma.js
+#'
+#' @export
+#'
+#' @importFrom R6 R6Class
+#' @importFrom glue glue single_quote
+#' @importFrom stringi stri_c
+#'
+chroma_scale <- R6::R6Class(
+  classname = "chroma_scale",
+  public = list(
+    initialize = function() {
+      private$chroma$chroma <- "chroma"
+    },
+    # Scales
+    scale = function(colors) {
+      if (is.null(private$chroma$bezier))
+        not_initialized(private$initialized, what = "scale")
+      if (missing(colors)) {
+        private$chroma$scale <- "scale()"
+      } else {
+        private$chroma$scale <- glue::glue(
+          "scale([{colors}])",
+          colors = stri_c(glue::single_quote(colors), collapse = ", ")
+        )
+      }
+      private$initialized <- TRUE
+    },
+    bezier = function(colors) {
+      not_initialized(private$initialized, what = "scale")
+      private$chroma$bezier <- glue::glue(
+        "bezier([{colors}])",
+        colors = stri_c(glue::single_quote(colors), collapse = ", ")
+      )
+      private$initialized <- TRUE
+    },
+    mode = function(mode = c("rgb", "lab", "lrgb", "hsl", "lch")) {
+      is_initialized(private$initialized, what = "scale")
+      mode <- match.arg(mode)
+      private$chroma$mode <- glue::glue("mode('{mode}')")
+    },
+    correctLightness = function() {
+      is_initialized(private$initialized)
+      private$chroma$correctLightness <- "correctLightness()"
+    },
+    colors = function(n) {
+      is_initialized(private$initialized, what = "scale")
+      if (length(n) == 1) {
+        private$chroma$colors <- glue::glue("colors({n})")
+      } else {
+        private$chroma$colors <- glue::glue("([{n}])", n = stri_c(n, collapse = ", "))
+      }
+    },
+    domain = function(domain) {
+      is_initialized(private$initialized, what = "scale")
+      private$chroma$domain <- glue::glue(
+        "domain([{domain}])", domain = stri_c(n, collapse = ", ")
+      )
+    },
+    gamma = function(gamma) {
+      is_initialized(private$initialized, what = "scale")
+      private$chroma$gamma <- glue::glue("gamma({gamma})")
+    },
+    padding = function(padding) {
+      is_initialized(private$initialized, what = "scale")
+      private$chroma$padding <- glue::glue("padding({padding})")
+    },
+
+    # R methods
+    print = function() {
+      code <- private$chroma
+      code <- wrap_code(code)
+      return(code)
+    },
+    eval = function(type_convert = TRUE, split_char = ",") {
+      code <- private$chroma
+      res <- eval_chroma(code = code, type_convert = type_convert, split_char = split_char)
+      return(res)
+    }
+
+  ),
+  private = list(
+    initialized = FALSE,
+    chroma = NULL
+  )
+)
+
+
 

@@ -304,10 +304,17 @@ chroma_scale <- R6::R6Class(
       if (missing(colors)) {
         private$chroma$scale <- "scale()"
       } else {
-        private$chroma$scale <- glue::glue(
-          "scale([{colors}])",
-          colors = stri_c(glue::single_quote(colors), collapse = ", ")
-        )
+        if (length(colors) == 1) {
+          private$chroma$scale <- glue::glue(
+            "scale({colors})",
+            colors = stri_c(glue::single_quote(colors), collapse = ", ")
+          )
+        } else {
+          private$chroma$scale <- glue::glue(
+            "scale([{colors}])",
+            colors = stri_c(glue::single_quote(colors), collapse = ", ")
+          )
+        }
       }
       private$initialized <- TRUE
     },
@@ -333,7 +340,9 @@ chroma_scale <- R6::R6Class(
       if (length(n) == 1) {
         private$chroma$colors <- glue::glue("colors({n})")
       } else {
-        private$chroma$colors <- glue::glue("([{n}])", n = stri_c(n, collapse = ", "))
+        values <- glue::glue("({n})")
+        values[is.na(n)] <- NA
+        private$chroma$colors <- values
       }
     },
     domain = function(domain) {

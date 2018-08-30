@@ -8,7 +8,11 @@ eval_chroma <- function(code = NULL, type_convert = TRUE, split_char = ",") {
   code <- wrap_code(code)
   res <- vector(mode = "character", length = length(code))
   for (i in seq_along(code)) {
-    res[i] <- chromajs$eval(code[i])
+    if (!is.na(code[i])) {
+      res[i] <- chromajs$eval(code[i])
+    } else {
+      res[i] <- NA_character_
+    }
   }
   if (!is.null(split_char)) {
     res <- unlist(stri_split_fixed(str = res, pattern = split_char))
@@ -19,14 +23,15 @@ eval_chroma <- function(code = NULL, type_convert = TRUE, split_char = ",") {
   return(res)
 }
 
-#' @importFrom stringi stri_c
+#' @importFrom stringi stri_c stri_replace_all_regex
 wrap_code <- function(code) {
   if ("colors" %in% names(code)) {
     code <- code[c(setdiff(names(code), "colors"), "colors")]
   }
   code$sep <- "."
   code <- do.call(stri_c, code)
-  code <- paste0(code, ";")
+  code <- stri_c(code, ";")
+  code <- stri_replace_all_regex(str = code, pattern = "\\)\\.\\(", replacement = ")(") # HACK
   return(code)
 }
 

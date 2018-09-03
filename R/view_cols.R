@@ -7,13 +7,14 @@
 #'
 #' @export
 #'
-#' @importFrom utils browseURL
-#' @importFrom htmltools validateCssUnit tags doRenderTags
+#' @name view-colors
+#'
+#' @importFrom htmltools validateCssUnit tags
 #' @importFrom glue glue
 #'
 #' @examples
-#' \dontrun{
 #'
+#' ### View colors
 #' # Scale of greys
 #' view_cols(c("#ffffff", "#e3e3e3", "#c6c6c6", "#aaaaaa",
 #'             "#8e8e8e", "#717171", "#555555", "#393939",
@@ -27,7 +28,6 @@
 #'
 #' view_cols(col2hex(colors()[1:50]))
 #'
-#' }
 view_cols <- function(colors, width = 80, height = 80) {
   width <- validateCssUnit(width)
   height <- validateCssUnit(height)
@@ -45,14 +45,140 @@ view_cols <- function(colors, width = 80, height = 80) {
       )
     }
   )
+  call_viewer(col_tags)
+}
+
+#' @rdname view-colors
+#' @export
+#' @param pal A function for generating a palette.
+#' @importFrom htmltools tagList
+#'
+#' @examples
+#'
+#' ### View palettes
+#'
+#' # View one palette
+#' view_pal(pal = chroma_continuous_pal())
+#' view_pal(pal = chroma_continuous_pal(mode = "lch"))
+#'
+#' # View several palettes
+#' view_pal(pal = list(
+#'   "default (mode lab)" = chroma_continuous_pal(),
+#'   "mode lch" = chroma_continuous_pal(mode = "lch"),
+#'   "mode rgb" = chroma_continuous_pal(mode = "rgb")
+#' ))
+#'
+#' # View scales palettes
+#' library(scales)
+#' view_pal(pal = list(
+#'   "seq_gradient_pal" = seq_gradient_pal(),
+#'   "gradient_n_pal" = gradient_n_pal(c("yellow", "navy"))
+#' ))
+#'
+view_pal <- function(pal, height = 80) {
+  height <- validateCssUnit(height)
+  x <- seq(0, 1, length.out = 100)
+  if (is.function(pal)) {
+    colors <- pal(x)
+    gradient <- linear_gradient(cols = colors)
+    col_tags <- tags$div(
+      style = glue::glue("width: 100%; height: {height};"),
+      style = glue::glue("background: {gradient};")
+    )
+  } else if (is.list(pal)) {
+    gradient <- lapply(
+      X = pal,
+      FUN = function(fun) {
+        colors <- fun(x)
+        linear_gradient(cols = colors)
+      }
+    )
+    gradient <- unlist(gradient)
+    col_tags <- lapply(
+      X = seq_along(gradient),
+      FUN = function(i) {
+        tagList(
+          tags$p(names(pal)[i]),
+          tags$div(
+            style = glue::glue("width: 100%; height: {height};"),
+            style = glue::glue("background: {gradient};", gradient = gradient[i])
+          )
+        )
+      }
+    )
+  } else {
+    stop("'pal' must be a function or a list of function.", call. = FALSE)
+  }
+  call_viewer(col_tags)
+}
+
+#' @rdname view-colors
+#' @export
+#'
+#' @examples
+#'
+#' ### View a gradient
+#'
+#' x <- seq(0, 1, length.out = 100)
+#' view_gradient(chroma_continuous_pal()(x))
+#'
+#' # with a list
+#' view_gradient(list(
+#'   "chroma" = chroma_continuous_pal()(x),
+#'   "bezier" = bezier_continuous_pal()(x)
+#' ))
+view_gradient <- function(colors, height = 80) {
+  height <- validateCssUnit(height)
+  if (is.atomic(colors)) {
+    gradient <- linear_gradient(cols = colors)
+    col_tags <- tags$div(
+      style = glue::glue("width: 100%; height: {height};"),
+      style = glue::glue("background: {gradient};")
+    )
+  } else if (is.list(colors)) {
+    gradient <- lapply(
+      X = colors,
+      FUN = linear_gradient
+    )
+    gradient <- unlist(gradient)
+    col_tags <- lapply(
+      X = seq_along(gradient),
+      FUN = function(i) {
+        tagList(
+          tags$p(names(colors)[i]),
+          tags$div(
+            style = glue::glue("width: 100%; height: {height};"),
+            style = glue::glue("background: {gradient};", gradient = gradient[i])
+          )
+        )
+      }
+    )
+  } else {
+    stop("'pal' must be a function or a list of function.", call. = FALSE)
+  }
+  call_viewer(col_tags)
+}
+
+
+#' @importFrom utils browseURL
+#' @importFrom htmltools doRenderTags
+call_viewer <- function(html_tags) {
   dir <- tempfile()
   dir.create(dir)
   htmlFile <- file.path(dir, "index.html")
-  writeLines(text = doRenderTags(col_tags), con = htmlFile)
+  writeLines(text = doRenderTags(html_tags), con = htmlFile)
   viewer <- getOption("viewer")
   if (!is.null(viewer))
     viewer(url = htmlFile)
   else
     utils::browseURL(url = htmlFile)
 }
+
+
+
+
+
+
+
+
 

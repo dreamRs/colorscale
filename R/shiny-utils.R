@@ -11,6 +11,8 @@
 #' @importFrom htmltools tags validateCssUnit
 #' @importFrom glue glue
 #'
+#' @name shiny-view-colors
+#'
 #' @examples
 #' \dontrun{
 #'

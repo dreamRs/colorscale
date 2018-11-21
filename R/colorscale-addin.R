@@ -4,15 +4,17 @@
 #' Interactively create a color palette from a unique color
 #'
 #' @param color Hexadecimal string or a name for color.
+#' @param viewer Where to display the gadget: \code{"dialog"},
+#'  \code{"pane"} or \code{"browser"} (see \code{\link[shiny]{viewer}}).
 #'
 #' @export
 #'
 #' @importFrom miniUI miniPage miniContentPanel
 #' @importFrom htmltools tags
-#' @importFrom shiny uiOutput renderUI runGadget paneViewer actionButton
+#' @importFrom shiny uiOutput renderUI runGadget paneViewer actionButton browserViewer
 #'  sliderInput splitLayout icon dialogViewer stopApp observeEvent reactiveValues
 #'  showModal modalDialog actionLink req
-#' @importFrom shinyWidgets spectrumInput chooseSliderSkin prettyRadioButtons
+#' @importFrom shinyWidgets spectrumInput chooseSliderSkin prettyRadioButtons prettyToggle
 #' @importFrom glue double_quote glue
 #' @importFrom stringi stri_c
 #' @importFrom rstudioapi getSourceEditorContext insertText
@@ -23,12 +25,12 @@
 #' if (interactive()) {
 #'
 #' # Launch the gadget with :
-#' color_scale()
+#' one_color_scale()
 #'
 #' }
 #'
 #' }
-color_scale <- function(color = "#1D9A6C") {
+one_color_scale <- function(color = "#1D9A6C", viewer = getOption(x = "colorscale.viewer", default = "pane")) {
   stopifnot(length(color) == 1)
 
   ui <- miniPage(
@@ -54,25 +56,43 @@ color_scale <- function(color = "#1D9A6C") {
     # body
     miniContentPanel(
       padding = 10,
-      spectrumInput(
-        inputId = "main_col",
-        label = "Choose a color:",
-        selected = color,
-        options = list(
-          "show-buttons" = FALSE,
-          "preferred-format" = "hex",
-          "show-input" = TRUE
+      splitLayout(
+        tags$div(
+          tags$b("Input color:"),
+          spectrumInput(
+            inputId = "main_col",
+            label = NULL,
+            selected = color, width = "90%",
+            options = list(
+              "show-buttons" = FALSE,
+              "preferred-format" = "hex",
+              "show-input" = TRUE
+            )
+          )
+        ),
+        tags$div(
+          style = "height: 70px;",
+          tags$div(style = "height: 25px;"),
+          prettyToggle(
+            inputId = "play_color",
+            value = TRUE,
+            label_on = "Play",
+            label_off = "Pause",
+            outline = TRUE,
+            plain = TRUE,
+            bigger = TRUE,
+            inline = FALSE,
+            icon_on = icon("play-circle-o", class = "fa-2x"),
+            icon_off = icon("pause-circle-o", class = "fa-2x")
+          )
         )
       ),
-      tags$br(),
+      # tags$br(),
       tags$b("Output palette:"),
       uiOutput(outputId = "rect_cols"),
       tags$br(),
-      # tags$b("Parameters:"),
       splitLayout(
         tags$div(
-          # width = 6,
-          # tags$p("Dark colors"),
           sliderInput(
             inputId = "n_dark",
             label = "Number of dark colors:",
@@ -110,8 +130,6 @@ color_scale <- function(color = "#1D9A6C") {
           )
         ),
         tags$div(
-          # width = 6,
-          # tags$p("Light colors"),
           sliderInput(
             inputId = "n_light",
             label = "Number of light colors:",
@@ -157,6 +175,7 @@ color_scale <- function(color = "#1D9A6C") {
     result_scale <- reactiveValues(colors = NULL, code = "")
 
     output$rect_cols <- renderUI({
+      req(input$play_color, cancelOutput = TRUE)
       color <- input$main_col
       res_colors <- single_scale(
         color = color,
@@ -235,7 +254,14 @@ color_scale <- function(color = "#1D9A6C") {
 
   }
 
-  runGadget(app = ui, server = server, viewer = paneViewer(minHeight = 600)) # minHeight = "maximize"
+  if (viewer == "dialog") {
+    viewer <- dialogViewer("C'est le temps que tu as perdu pour ta rose qui rend ta rose importante.")
+  } else if (viewer == "browser") {
+    viewer <- browserViewer()
+  } else {
+    viewer <- paneViewer(minHeight = 600)
+  }
+  runGadget(app = ui, server = server, viewer = viewer)
 }
 
 

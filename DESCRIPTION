@@ -1,6 +1,6 @@
 Package: colorscale
 Title: Create a Color Scale From a Single Color
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
   person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
@@ -19,7 +19,7 @@ Imports:
     miniUI,
     shinyWidgets,
     rstudioapi
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Suggests: 
     grDevices,
     scales

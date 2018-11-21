@@ -1,6 +1,6 @@
 # colorscale
 
-> Create a Color Scale From a Single Color & R6 api for 'chroma.js'.
+> R6 api for 'chroma.js' & an add-in to create a color scale from a single color
 
 [![Travis build status](https://travis-ci.org/dreamRs/colorscale.svg?branch=master)](https://travis-ci.org/dreamRs/colorscale)
 
@@ -19,6 +19,19 @@ source("https://install-github.me/dreamRs/colorscale")
 # or with devtools:
 devtools::install_github("dreamRs/colorscale")
 ```
+
+## RStudio add-in
+
+An add-in to create a color palette from a single color (largely inspired by https://github.com/hihayk/scale).
+
+To launch the gadget use the "Addins" menu in RStudio or: 
+
+```r
+colorscale::one_color_scale()
+```
+
+![](imgs/addin-onecolor.png)
+
 
 ## chroma.js API
 

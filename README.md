@@ -1,8 +1,9 @@
 # colorscale
 
-> R6 api for 'chroma.js' & an add-in to create a color scale from a single color
+> R6 api for [chroma.js](https://github.com/gka/chroma.js) & an add-in to create a color scale from a single color
 
 [![Travis build status](https://travis-ci.org/dreamRs/colorscale.svg?branch=master)](https://travis-ci.org/dreamRs/colorscale)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 
 ## Installation
@@ -10,14 +11,7 @@
 Install development version from GitHub with:
 
 ``` r
-# with remotes
 remotes::install_github("dreamRs/colorscale")
-
-# or with install-github.me service (based on remotes)
-source("https://install-github.me/dreamRs/colorscale")
-
-# or with devtools:
-devtools::install_github("dreamRs/colorscale")
 ```
 
 ## RStudio add-in

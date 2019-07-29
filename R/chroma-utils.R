@@ -151,5 +151,77 @@ chroma_contrast <- function(color1, color2) {
 }
 
 
+#' Change lightness of a color
+#'
+#' @param color Hexadecimal string or a name for color.
+#' @param value Value for brighten / darken.
+#'
+#' @return Hexadecimal string
+#' @export
+#'
+#' @name chroma-lightness
+#'
+#' @examples
+#' chroma_brighten("#75b8d1")
+#' chroma_darken("#75b8d1")
+#'
+#' view_cols(c(
+#'   chroma_darken("#75b8d1", 2),
+#'   chroma_darken("#75b8d1"),
+#'   "#75b8d1",
+#'   chroma_brighten("#75b8d1"),
+#'   chroma_brighten("#75b8d1", 2)
+#' ))
+chroma_brighten <- function(color, value = 1) {
+  ch <- chroma$new(color)
+  ch$brighten(value)
+  ch$eval()
+}
 
+#' @rdname chroma-lightness
+#' @export
+chroma_darken <- function(color, value = 1) {
+  ch <- chroma$new(color)
+  ch$darken(value)
+  ch$eval()
+}
+
+
+
+
+#' Change saturation of a color
+#'
+#' @param color Hexadecimal string or a name for color.
+#' @param value Value for saturate / desaturate
+#'
+#' @return Hexadecimal string
+#' @export
+#'
+#' @name chroma-saturation
+#'
+#' @examples
+#'
+#' chroma_saturate("#75b8d1")
+#' chroma_desaturate("#75b8d1")
+#'
+#' view_cols(c(
+#'   chroma_desaturate("#75b8d1", 3),
+#'   chroma_desaturate("#75b8d1"),
+#'   "#75b8d1",
+#'   chroma_saturate("#75b8d1"),
+#'   chroma_saturate("#75b8d1", 3)
+#' ))
+chroma_saturate <- function(color, value = 1) {
+  ch <- chroma$new(color)
+  ch$saturate(value)
+  ch$eval()
+}
+
+#' @rdname chroma-saturation
+#' @export
+chroma_desaturate <- function(color, value = 1) {
+  ch <- chroma$new(color)
+  ch$desaturate(value)
+  ch$eval()
+}
 

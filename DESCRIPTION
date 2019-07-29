@@ -1,6 +1,6 @@
 Package: colorscale
 Title: Create a Color Scale From a Single Color
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
   person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),

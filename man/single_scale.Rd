@@ -4,9 +4,17 @@
 \alias{single_scale}
 \title{Create a color scale from a single color}
 \usage{
-single_scale(color, n_light = 6, n_dark = 4, lightness = 0.8,
-  darkness = 0.5, rotate_light = 67, rotate_dark = -51,
-  saturation_light = 0.2, saturation_dark = 0.14)
+single_scale(
+  color,
+  n_light = 6,
+  n_dark = 4,
+  lightness = 0.8,
+  darkness = 0.5,
+  rotate_light = 67,
+  rotate_dark = -51,
+  saturation_light = 0.2,
+  saturation_dark = 0.14
+)
 }
 \arguments{
 \item{color}{Hexadecimal string or a name for color.}

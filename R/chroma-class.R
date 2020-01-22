@@ -1,4 +1,7 @@
-#' Chroma API
+#' @title Chroma API
+#'
+#' @description Manipulate colors with 'chroma.js' library.
+#' See \url{https://gka.github.io/chroma.js/}.
 #'
 #' @export
 #'
@@ -9,6 +12,11 @@
 chroma <- R6::R6Class(
   classname = "chroma",
   public = list(
+
+    #' @description
+    #' Create a new chroma instance.
+    #' @param color Name, hex code or a vector of length 3 (rgb) of a color.
+    #' @return A new `chroma` object.
     initialize = function(color = NULL) {
       if (is.null(color)) {
         private$chroma$chroma <- "chroma"
@@ -22,19 +30,46 @@ chroma <- R6::R6Class(
       }
     },
 
-
+    #' @description
+    #' Create a new chroma instance with HSL color.
+    #' @param hue Hue parameter.
+    #' @param saturation Aaturation parameter.
+    #' @param lightness Lightness parameter.
+    #' @return A new `chroma` object.
     chroma.hsl = function(hue, saturation, lightness) {
       private$initialized <- TRUE
       private$chroma$chroma <- glue::glue("chroma.hsl({hue}, {saturation}, {lightness})")
     },
+
+    #' @description
+    #' Create a new chroma instance with HSV color.
+    #' @param hue Hue parameter.
+    #' @param saturation Saturation parameter.
+    #' @param value Value parameter.
+    #' @return A new `chroma` object.
     chroma.hsv = function(hue, saturation, value) {
       private$initialized <- TRUE
       private$chroma$chroma <- glue::glue("chroma.hsv({hue}, {saturation}, {value})")
     },
+
+    #' @description
+    #' Create a new chroma instance with LCH color.
+    #' @param Lightness Lightness parameter.
+    #' @param chroma Chroma parameter.
+    #' @param hue Hue parameter.
+    #' @return A new `chroma` object.
     chroma.lch = function(Lightness, chroma, hue) {
       private$initialized <- TRUE
       private$chroma$chroma <- glue::glue("chroma.lch({Lightness}, {chroma}, {hue})")
     },
+
+    #' @description
+    #' Create a new chroma instance with RGB color.
+    #' @param red Red parameter.
+    #' @param green Green parameter.
+    #' @param blue Blue parameter.
+    #' @param alpha Alpha parameter.
+    #' @return A new `chroma` object.
     chroma.gl = function(red, green, blue, alpha = NULL) {
       private$initialized <- TRUE
       if (is.null(alpha)) {
@@ -45,6 +80,13 @@ chroma <- R6::R6Class(
     },
 
     # API
+
+    #' @description
+    #' Mixes two colors
+    #' @param color2 Name of a second color.
+    #' @param ratio A value between 0 and 1.
+    #' @param mode Color space used for interpolation.
+    #' @return A `chroma` object modified.
     mix = function(color2, ratio = 0.5, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
       is_initialized(private$initialized)
       mode <- match.arg(mode)
@@ -52,6 +94,13 @@ chroma <- R6::R6Class(
         stop("'ratio' must be between 0 and 1 (inclusive)", call. = FALSE)
       private$chroma$mix <- glue::glue("mix('{color2}', {ratio}, '{mode}')")
     },
+
+
+    #' @description
+    #' Average between colors
+    #' @param colors Color(s).
+    #' @param mode Color space used for interpolation.
+    #' @return A `chroma` object modified.
     average = function(colors, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
       mode <- match.arg(mode)
       private$chroma$average <- glue::glue(
@@ -60,18 +109,42 @@ chroma <- R6::R6Class(
         mode = mode
       )
     },
+
+    #' @description
+    #' Blend two colors
+    #' @param color2 Name of a second color.
+    #' @param blend Blend mode.
+    #' @return A `chroma` object modified.
     blend = function(color2, type = c("multiply", "darken", "lighten", "screen", "overlay", "burn", "dodge")) {
       is_initialized(private$initialized)
       type <- match.arg(type)
       private$chroma$blend <- glue::glue("blend('{color2}', '{type}')")
     },
+
+    #' @description
+    #' Get a random color
+    #' @return A `chroma` object modified.
     random = function() {
       private$chroma$random <- "random()"
     },
+
+    #' @description
+    #' Contrast between two colors
+    #' @param color1 Name of first color.
+    #' @param color2 Name of second color.
+    #' @note Dont initialize chroma instance with a color.
+    #' @return A `chroma` object modified.
     contrast = function(color1, color2) {
       not_initialized(private$initialized)
       private$chroma$contrast <- glue::glue("contrast('{color1}', '{color2}')")
     },
+
+    #' @description
+    #' Distancec between two colors
+    #' @param color1 Name of first color.
+    #' @param color2 Name of second color.
+    #' @note Dont initialize chroma instance with a color.
+    #' @return A `chroma` object modified.
     distance = function(color1, color2, mode = c("lab", "rgb", "hsl", "lrgb", "lch")) {
       not_initialized(private$initialized)
       mode <- match.arg(mode)

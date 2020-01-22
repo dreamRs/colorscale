@@ -4,8 +4,7 @@
 \alias{get_dark_cols}
 \title{Get n darkest colors from a single one}
 \usage{
-get_dark_cols(color, n = 4, darkness = 0.5, rotate = -51,
-  saturation = 0.14)
+get_dark_cols(color, n = 4, darkness = 0.5, rotate = -51, saturation = 0.14)
 }
 \arguments{
 \item{color}{Hexadecimal string or a name for color.}

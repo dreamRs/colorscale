@@ -6,8 +6,12 @@
 \alias{bezier_continuous_pal}
 \title{Continuous color palettes}
 \usage{
-chroma_continuous_pal(colors = c("yellow", "navy"), mode = "lab",
-  padding = NULL, correct_lightness = TRUE)
+chroma_continuous_pal(
+  colors = c("yellow", "navy"),
+  mode = "lab",
+  padding = NULL,
+  correct_lightness = TRUE
+)
 
 bezier_continuous_pal(colors = c("yellow", "red", "black"))
 }

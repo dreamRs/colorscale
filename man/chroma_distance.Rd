@@ -4,8 +4,7 @@
 \alias{chroma_distance}
 \title{Distance between two colors}
 \usage{
-chroma_distance(color1, color2, mode = c("lab", "rgb", "hsl", "lrgb",
-  "lch"))
+chroma_distance(color1, color2, mode = c("lab", "rgb", "hsl", "lrgb", "lch"))
 }
 \arguments{
 \item{color1}{Hexadecimal string or a name for color one.}

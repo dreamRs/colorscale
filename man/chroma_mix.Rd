@@ -4,8 +4,12 @@
 \alias{chroma_mix}
 \title{Mixes two colors}
 \usage{
-chroma_mix(color1, color2, ratio = 0.5, mode = c("rgb", "hsl", "lab",
-  "lrgb", "lch"))
+chroma_mix(
+  color1,
+  color2,
+  ratio = 0.5,
+  mode = c("rgb", "hsl", "lab", "lrgb", "lch")
+)
 }
 \arguments{
 \item{color1}{Hexadecimal string or a name for color one.}

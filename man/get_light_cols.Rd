@@ -4,8 +4,7 @@
 \alias{get_light_cols}
 \title{Get n lightest colors from a single one}
 \usage{
-get_light_cols(color, n = 6, lightness = 0.8, rotate = 67,
-  saturation = 0.2)
+get_light_cols(color, n = 6, lightness = 0.8, rotate = 67, saturation = 0.2)
 }
 \arguments{
 \item{color}{Hexadecimal string or a name for color.}

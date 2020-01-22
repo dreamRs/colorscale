@@ -4,8 +4,10 @@
 \alias{one_color_scale}
 \title{Color Scale Shiny Gadget}
 \usage{
-one_color_scale(color = "#1D9A6C", viewer = getOption(x =
-  "colorscale.viewer", default = "pane"))
+one_color_scale(
+  color = "#1D9A6C",
+  viewer = getOption(x = "colorscale.viewer", default = "pane")
+)
 }
 \arguments{
 \item{color}{Hexadecimal string or a name for color.}

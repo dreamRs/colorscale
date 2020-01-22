@@ -32,16 +32,21 @@ view_cols <- function(colors, width = 80, height = 80) {
   width <- validateCssUnit(width)
   height <- validateCssUnit(height)
   col_tags <- lapply(
-    X = colors,
-    FUN = function(x) {
+    X = seq_along(colors),
+    FUN = function(i) {
+      col <- colors[i]
       tags$div(
         style = "display: inline-block; text-align: center; margin-bottom: 5px;",
         style = glue::glue(
           "height: {height}; line-height: {height}; background-color : {color}; width: {width}; color: {textColor}",
-          color = x, width = width, height = height,
-          textColor = ifelse(chroma_contrast(x, "black") >= 4.5, "black", "white")
+          color = col, width = width, height = height,
+          textColor = ifelse(chroma_contrast(col, "black") >= 4.5, "black", "white")
         ),
-        x
+        if (!is.null(names(colors))) {
+          names(colors)[i]
+        } else {
+          col
+        }
       )
     }
   )

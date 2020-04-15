@@ -71,7 +71,7 @@ get_light_cols <- function(color, n = 6, lightness = 0.8, rotate = 67, saturatio
 
 #' Create a color scale from a single color
 #'
-#' @param color Hexadecimal string or a name for color.
+#' @param color Hexadecimal string or a name of a color.
 #' @param n_light Number of light colors to generate.
 #' @param n_dark Number of dark colors to generate.
 #' @param lightness Percentage of lightness (\code{[0, 1]}).
@@ -85,15 +85,15 @@ get_light_cols <- function(color, n = 6, lightness = 0.8, rotate = 67, saturatio
 #' @export
 #'
 #' @examples
-#' single_scale(color = "#1D9A6C")
+#' create_single_scale(color = "#1D9A6C")
 #'
 #' # display in viewer
-#' view_cols(single_scale(color = "#1D9A6C"))
-single_scale <- function(color,
-                         n_light = 6, n_dark = 4,
-                         lightness = 0.8, darkness = 0.5,
-                         rotate_light = 67, rotate_dark = -51,
-                         saturation_light = 0.20, saturation_dark = 0.14) {
+#' view_cols(create_single_scale(color = "#1D9A6C"))
+create_single_scale <- function(color,
+                                n_light = 6, n_dark = 4,
+                                lightness = 0.8, darkness = 0.5,
+                                rotate_light = 67, rotate_dark = -51,
+                                saturation_light = 0.20, saturation_dark = 0.14) {
   if (length(color) != 1) {
     stop("'color' must be of length one !", call. = FALSE)
   }

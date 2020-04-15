@@ -1,9 +1,11 @@
 # colorscale
 
-> R6 api for [chroma.js](https://github.com/gka/chroma.js) & an add-in to create a color scale from a single color
+> R6 api for [chroma.js](https://github.com/gka/chroma.js) & an RStudio add-in to create a color scale from a single color.
 
-[![Travis build status](https://travis-ci.org/dreamRs/colorscale.svg?branch=master)](https://travis-ci.org/dreamRs/colorscale)
+<!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R build status](https://github.com/dreamRs/colorscale/workflows/R-CMD-check/badge.svg)](https://github.com/dreamRs/colorscale/actions)
+<!-- badges: end -->
 
 
 ## Installation
@@ -14,6 +16,7 @@ Install development version from GitHub with:
 remotes::install_github("dreamRs/colorscale")
 ```
 
+
 ## RStudio add-in
 
 An add-in to create a color palette from a single color (largely inspired by https://github.com/hihayk/scale).
@@ -21,10 +24,10 @@ An add-in to create a color palette from a single color (largely inspired by htt
 To launch the gadget use the "Addins" menu in RStudio or: 
 
 ```r
-colorscale::one_color_scale()
+colorscale::addin_color_scale()
 ```
 
-![](imgs/addin-onecolor.png)
+![](man/figures/addin-onecolor.png)
 
 
 ## chroma.js API
@@ -41,9 +44,9 @@ ch$eval()
 
 hsl <- chroma$new()
 hsl$chroma.hsl(330, 1, 0.6)
-scales::show_col(hsl$eval())
+view_cols(hsl$eval())
 hsl$darken(seq(0.2, 3, 0.2))
-scales::show_col(hsl$eval())
+view_cols(hsl$eval())
 ```
 
 
@@ -73,7 +76,7 @@ chroma_distance("#fff", "#ff0", "rgb")
 
 Convert color to specific color space:
 
-````r
+```r
 ch <- chroma$new("orange")
 ch$hex()
 #> [1] "#ffa500"

@@ -9,7 +9,7 @@
 #'
 #' @name view-colors
 #'
-#' @importFrom htmltools validateCssUnit tags
+#' @importFrom htmltools validateCssUnit tags browsable
 #' @importFrom glue glue
 #'
 #' @examples
@@ -50,13 +50,13 @@ view_cols <- function(colors, width = 80, height = 80) {
       )
     }
   )
-  call_viewer(col_tags)
+  browsable(tags$div(col_tags))
 }
 
 #' @rdname view-colors
 #' @export
 #' @param pal A function for generating a palette.
-#' @importFrom htmltools tagList
+#' @importFrom htmltools tagList browsable
 #'
 #' @examples
 #'
@@ -114,7 +114,7 @@ view_pal <- function(pal, height = 80) {
   } else {
     stop("'pal' must be a function or a list of function.", call. = FALSE)
   }
-  call_viewer(col_tags)
+  browsable(tags$div(col_tags))
 }
 
 #' @rdname view-colors
@@ -161,23 +161,9 @@ view_gradient <- function(colors, height = 80) {
   } else {
     stop("'pal' must be a function or a list of function.", call. = FALSE)
   }
-  call_viewer(col_tags)
+  browsable(tags$div(col_tags))
 }
 
-
-#' @importFrom utils browseURL
-#' @importFrom htmltools doRenderTags
-call_viewer <- function(html_tags) {
-  dir <- tempfile()
-  dir.create(dir)
-  htmlFile <- file.path(dir, "index.html")
-  writeLines(text = doRenderTags(html_tags), con = htmlFile)
-  viewer <- getOption("viewer")
-  if (!is.null(viewer))
-    viewer(url = htmlFile)
-  else
-    utils::browseURL(url = htmlFile)
-}
 
 
 

@@ -53,6 +53,7 @@ Dont initialize chroma instance with a color.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new chroma instance.
 \subsection{Usage}{
@@ -72,6 +73,7 @@ A new `chroma` object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-chroma.hsl"></a>}}
+\if{latex}{\out{\hypertarget{method-chroma.hsl}{}}}
 \subsection{Method \code{chroma.hsl()}}{
 Create a new chroma instance with HSL color.
 \subsection{Usage}{
@@ -95,6 +97,7 @@ A new `chroma` object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-chroma.hsv"></a>}}
+\if{latex}{\out{\hypertarget{method-chroma.hsv}{}}}
 \subsection{Method \code{chroma.hsv()}}{
 Create a new chroma instance with HSV color.
 \subsection{Usage}{
@@ -118,6 +121,7 @@ A new `chroma` object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-chroma.lch"></a>}}
+\if{latex}{\out{\hypertarget{method-chroma.lch}{}}}
 \subsection{Method \code{chroma.lch()}}{
 Create a new chroma instance with LCH color.
 \subsection{Usage}{
@@ -141,6 +145,7 @@ A new `chroma` object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-chroma.gl"></a>}}
+\if{latex}{\out{\hypertarget{method-chroma.gl}{}}}
 \subsection{Method \code{chroma.gl()}}{
 Create a new chroma instance with RGB color.
 \subsection{Usage}{
@@ -166,6 +171,7 @@ A new `chroma` object.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-mix"></a>}}
+\if{latex}{\out{\hypertarget{method-mix}{}}}
 \subsection{Method \code{mix()}}{
 Mixes two colors
 \subsection{Usage}{
@@ -189,6 +195,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-average"></a>}}
+\if{latex}{\out{\hypertarget{method-average}{}}}
 \subsection{Method \code{average()}}{
 Average between colors
 \subsection{Usage}{
@@ -210,6 +217,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-blend"></a>}}
+\if{latex}{\out{\hypertarget{method-blend}{}}}
 \subsection{Method \code{blend()}}{
 Blend two colors
 \subsection{Usage}{
@@ -234,6 +242,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-random"></a>}}
+\if{latex}{\out{\hypertarget{method-random}{}}}
 \subsection{Method \code{random()}}{
 Get a random color
 \subsection{Usage}{
@@ -246,6 +255,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-contrast"></a>}}
+\if{latex}{\out{\hypertarget{method-contrast}{}}}
 \subsection{Method \code{contrast()}}{
 Contrast between two colors
 \subsection{Usage}{
@@ -267,8 +277,9 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-distance"></a>}}
+\if{latex}{\out{\hypertarget{method-distance}{}}}
 \subsection{Method \code{distance()}}{
-Distancec between two colors
+Distance between two colors
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$distance(color1, color2, mode = c("lab", "rgb", "hsl", "lrgb", "lch"))}\if{html}{\out{</div>}}
 }
@@ -288,6 +299,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-alpha"></a>}}
+\if{latex}{\out{\hypertarget{method-alpha}{}}}
 \subsection{Method \code{alpha()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$alpha(value = NA)}\if{html}{\out{</div>}}
@@ -296,6 +308,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-brighten"></a>}}
+\if{latex}{\out{\hypertarget{method-brighten}{}}}
 \subsection{Method \code{brighten()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$brighten(value = 1)}\if{html}{\out{</div>}}
@@ -304,6 +317,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-darken"></a>}}
+\if{latex}{\out{\hypertarget{method-darken}{}}}
 \subsection{Method \code{darken()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$darken(value = 1)}\if{html}{\out{</div>}}
@@ -312,6 +326,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-saturate"></a>}}
+\if{latex}{\out{\hypertarget{method-saturate}{}}}
 \subsection{Method \code{saturate()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$saturate(value = 1)}\if{html}{\out{</div>}}
@@ -320,6 +335,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-desaturate"></a>}}
+\if{latex}{\out{\hypertarget{method-desaturate}{}}}
 \subsection{Method \code{desaturate()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$desaturate(value = 1)}\if{html}{\out{</div>}}
@@ -328,6 +344,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-set"></a>}}
+\if{latex}{\out{\hypertarget{method-set}{}}}
 \subsection{Method \code{set()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$set(channel, value)}\if{html}{\out{</div>}}
@@ -336,6 +353,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-get"></a>}}
+\if{latex}{\out{\hypertarget{method-get}{}}}
 \subsection{Method \code{get()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$get(channel)}\if{html}{\out{</div>}}
@@ -344,6 +362,7 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-luminance"></a>}}
+\if{latex}{\out{\hypertarget{method-luminance}{}}}
 \subsection{Method \code{luminance()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$luminance(lum = NULL, mode = "rgb")}\if{html}{\out{</div>}}
@@ -352,118 +371,198 @@ A `chroma` object modified.
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-hex"></a>}}
+\if{latex}{\out{\hypertarget{method-hex}{}}}
 \subsection{Method \code{hex()}}{
+Return color as hexadecimal
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$hex()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-name"></a>}}
+\if{latex}{\out{\hypertarget{method-name}{}}}
 \subsection{Method \code{name()}}{
+Return color's name
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$name()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-css"></a>}}
+\if{latex}{\out{\hypertarget{method-css}{}}}
 \subsection{Method \code{css()}}{
+Return color as CSS code
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$css()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-rgb"></a>}}
+\if{latex}{\out{\hypertarget{method-rgb}{}}}
 \subsection{Method \code{rgb()}}{
+Return color as RGB
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$rgb(round = TRUE)}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-rgba"></a>}}
+\if{latex}{\out{\hypertarget{method-rgba}{}}}
 \subsection{Method \code{rgba()}}{
+Return color as RGBA
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$rgba(round = TRUE)}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-hsl"></a>}}
+\if{latex}{\out{\hypertarget{method-hsl}{}}}
 \subsection{Method \code{hsl()}}{
+Return color as HSL
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$hsl()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-hsv"></a>}}
+\if{latex}{\out{\hypertarget{method-hsv}{}}}
 \subsection{Method \code{hsv()}}{
+Return color as HSV
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$hsv()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-hsi"></a>}}
+\if{latex}{\out{\hypertarget{method-hsi}{}}}
 \subsection{Method \code{hsi()}}{
+Return color as HSI
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$hsi()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-lab"></a>}}
+\if{latex}{\out{\hypertarget{method-lab}{}}}
 \subsection{Method \code{lab()}}{
+Return color as LAB
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$lab()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-lch"></a>}}
+\if{latex}{\out{\hypertarget{method-lch}{}}}
 \subsection{Method \code{lch()}}{
+Return color as LCH
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$lch()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-hcl"></a>}}
+\if{latex}{\out{\hypertarget{method-hcl}{}}}
 \subsection{Method \code{hcl()}}{
+Return color as HCL
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$hcl()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-gl"></a>}}
+\if{latex}{\out{\hypertarget{method-gl}{}}}
 \subsection{Method \code{gl()}}{
+Return color as GL
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$gl()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
 \subsection{Method \code{print()}}{
+Print chroma javascript code
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$print()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+A \code{character}.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-eval"></a>}}
+\if{latex}{\out{\hypertarget{method-eval}{}}}
 \subsection{Method \code{eval()}}{
+Evaluate chroma call in javascript
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma$eval(type_convert = TRUE, split_char = ",")}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{type_convert}}{Convert data to appropriate type.}
+
+\item{\code{split_char}}{Character used to split results.}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+The result of chroma instructions.
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

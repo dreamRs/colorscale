@@ -140,7 +140,7 @@ chroma <- R6::R6Class(
     },
 
     #' @description
-    #' Distancec between two colors
+    #' Distance between two colors
     #' @param color1 Name of first color.
     #' @param color2 Name of second color.
     #' @note Dont initialize chroma instance with a color.
@@ -191,6 +191,9 @@ chroma <- R6::R6Class(
 
 
     # Convert methods
+
+    #' @description Return color as hexadecimal
+    #' @return A \code{character}.
     hex = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "hex()"
@@ -198,6 +201,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color's name
+    #' @return A \code{character}.
     name = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "name()"
@@ -205,6 +210,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as CSS code
+    #' @return A \code{character}.
     css = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "css()"
@@ -212,6 +219,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as RGB
+    #' @return A \code{character}.
     rgb = function(round = TRUE) {
       is_initialized(private$initialized)
       private$chroma$output <- glue::glue("rgb({tolower(round)})")
@@ -219,6 +228,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as RGBA
+    #' @return A \code{character}.
     rgba = function(round = TRUE) {
       is_initialized(private$initialized)
       private$chroma$output <- glue::glue("rgba({tolower(round)})")
@@ -226,6 +237,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as HSL
+    #' @return A \code{character}.
     hsl = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "hsl()"
@@ -233,6 +246,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as HSV
+    #' @return A \code{character}.
     hsv = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "hsv()"
@@ -240,6 +255,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as HSI
+    #' @return A \code{character}.
     hsi = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "hsi()"
@@ -247,6 +264,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as LAB
+    #' @return A \code{character}.
     lab = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "lab()"
@@ -254,6 +273,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as LCH
+    #' @return A \code{character}.
     lch = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "lch()"
@@ -261,6 +282,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as HCL
+    #' @return A \code{character}.
     hcl = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "hcl()"
@@ -268,6 +291,8 @@ chroma <- R6::R6Class(
       private$chroma$output <- NULL
       return(res)
     },
+    #' @description Return color as GL
+    #' @return A \code{character}.
     gl = function() {
       is_initialized(private$initialized)
       private$chroma$output <- "gl()"
@@ -279,11 +304,18 @@ chroma <- R6::R6Class(
 
 
     # R methods
+
+    #' @description Print chroma javascript code
+    #' @return A \code{character}.
     print = function() {
       code <- private$chroma
       code <- wrap_code(code)
       return(code)
     },
+    #' @description Evaluate chroma call in javascript
+    #' @param type_convert Convert data to appropriate type.
+    #' @param split_char Character used to split results.
+    #' @return The result of chroma instructions.
     eval = function(type_convert = TRUE, split_char = ",") {
       code <- private$chroma
       res <- eval_chroma(code = code, type_convert = type_convert, split_char = split_char)

@@ -1,5 +1,5 @@
 
-#' Color Scale Shiny Gadget
+#' Color Scale Addin
 #'
 #' Interactively create a color palette from a unique color
 #'
@@ -25,12 +25,12 @@
 #' if (interactive()) {
 #'
 #' # Launch the gadget with :
-#' one_color_scale()
+#' addin_color_scale()
 #'
 #' }
 #'
 #' }
-one_color_scale <- function(color = "#1D9A6C", viewer = getOption(x = "colorscale.viewer", default = "pane")) {
+addin_color_scale <- function(color = "#1D9A6C", viewer = getOption(x = "colorscale.viewer", default = "pane")) {
   stopifnot(length(color) == 1)
 
   ui <- miniPage(
@@ -177,7 +177,7 @@ one_color_scale <- function(color = "#1D9A6C", viewer = getOption(x = "colorscal
     output$rect_cols <- renderUI({
       req(input$play_color, cancelOutput = TRUE)
       color <- input$main_col
-      res_colors <- single_scale(
+      res_colors <- create_single_scale(
         color = color,
         n_dark = input$n_dark,
         darkness = input$p_dark / 100,
@@ -219,7 +219,7 @@ one_color_scale <- function(color = "#1D9A6C", viewer = getOption(x = "colorscal
         )
       } else {
         code <- glue::glue(
-          "single_scale(
+          "create_single_scale(
           color = {color},
           n_dark = {n_dark},
           darkness = {darkness},
@@ -255,7 +255,7 @@ one_color_scale <- function(color = "#1D9A6C", viewer = getOption(x = "colorscal
   }
 
   if (viewer == "dialog") {
-    viewer <- dialogViewer("C'est le temps que tu as perdu pour ta rose qui rend ta rose importante.")
+    viewer <- dialogViewer("Un ton seul n'est qu'une couleur, deux tons c'est un accord, c'est la vie.")
   } else if (viewer == "browser") {
     viewer <- browserViewer()
   } else {

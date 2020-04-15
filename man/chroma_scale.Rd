@@ -79,6 +79,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$new()}\if{html}{\out{</div>}}
@@ -87,6 +88,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-scale"></a>}}
+\if{latex}{\out{\hypertarget{method-scale}{}}}
 \subsection{Method \code{scale()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$scale(colors)}\if{html}{\out{</div>}}
@@ -95,6 +97,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-bezier"></a>}}
+\if{latex}{\out{\hypertarget{method-bezier}{}}}
 \subsection{Method \code{bezier()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$bezier(colors)}\if{html}{\out{</div>}}
@@ -103,6 +106,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-mode"></a>}}
+\if{latex}{\out{\hypertarget{method-mode}{}}}
 \subsection{Method \code{mode()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$mode(mode = c("rgb", "lab", "lrgb", "hsl", "lch"))}\if{html}{\out{</div>}}
@@ -111,6 +115,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-correctLightness"></a>}}
+\if{latex}{\out{\hypertarget{method-correctLightness}{}}}
 \subsection{Method \code{correctLightness()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$correctLightness()}\if{html}{\out{</div>}}
@@ -119,6 +124,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-colors"></a>}}
+\if{latex}{\out{\hypertarget{method-colors}{}}}
 \subsection{Method \code{colors()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$colors(n)}\if{html}{\out{</div>}}
@@ -127,6 +133,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-domain"></a>}}
+\if{latex}{\out{\hypertarget{method-domain}{}}}
 \subsection{Method \code{domain()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$domain(domain)}\if{html}{\out{</div>}}
@@ -135,6 +142,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-gamma"></a>}}
+\if{latex}{\out{\hypertarget{method-gamma}{}}}
 \subsection{Method \code{gamma()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$gamma(gamma)}\if{html}{\out{</div>}}
@@ -143,6 +151,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-padding"></a>}}
+\if{latex}{\out{\hypertarget{method-padding}{}}}
 \subsection{Method \code{padding()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$padding(padding)}\if{html}{\out{</div>}}
@@ -151,6 +160,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
 \subsection{Method \code{print()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$print()}\if{html}{\out{</div>}}
@@ -159,6 +169,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-eval"></a>}}
+\if{latex}{\out{\hypertarget{method-eval}{}}}
 \subsection{Method \code{eval()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{chroma_scale$eval(type_convert = TRUE, split_char = ",")}\if{html}{\out{</div>}}
@@ -167,6 +178,7 @@ view_cols(res)
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

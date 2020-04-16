@@ -1,4 +1,4 @@
 Name: Create a color scale
 Description: Create a color scale from a single color
-Binding: one_color_scale
+Binding: addin_color_scale
 Interactive: true

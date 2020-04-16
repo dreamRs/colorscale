@@ -18,5 +18,7 @@ A hexadecimal string
 Simple averaging of colors
 }
 \examples{
+\dontrun{
 chroma_avg(colors = c("#ddd", "yellow", "red", "teal"))
+}
 }

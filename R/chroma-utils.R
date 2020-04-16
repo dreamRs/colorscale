@@ -32,10 +32,12 @@ chroma_mix <- function(color1, color2, ratio = 0.5, mode = c("rgb", "hsl", "lab"
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' chroma_avg(colors = c("#ddd", "yellow", "red", "teal"))
+#' }
 chroma_avg <- function(colors, mode = c("rgb", "hsl", "lab", "lrgb", "lch")) {
-  if (length(colors) <= 2)
-    stop("'colors' must bve minimum length 2.", call. = FALSE)
+  if (length(colors) < 2)
+    stop("'colors' must be at least of length 2.", call. = FALSE)
   ch <- chroma$new()
   ch$average(colors = colors, mode = mode)
   ch$eval()

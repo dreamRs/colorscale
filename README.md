@@ -5,6 +5,7 @@
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R build status](https://github.com/dreamRs/colorscale/workflows/R-CMD-check/badge.svg)](https://github.com/dreamRs/colorscale/actions)
+[![Travis build status](https://travis-ci.com/dreamRs/colorscale.svg?branch=master)](https://travis-ci.com/dreamRs/colorscale)
 <!-- badges: end -->
 
 
